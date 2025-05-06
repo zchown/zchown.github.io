@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "predeploy": "elm make src/Main.elm --output=main.js",
+    "deploy": "gh-pages -d ."
+  }
+}
+
