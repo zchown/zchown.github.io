@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "predeploy": "elm make src/Main.elm --output=main.js",
-    "deploy": "gh-pages -d ."
+    "build": "elm make src/Main.elm --output=docs/main.js && cp index.html docs/index.html"
   }
 }
 
