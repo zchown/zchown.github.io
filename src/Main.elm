@@ -379,10 +379,10 @@ viewBoid boid =
                 ++ ")"
     in
     Svg.polygon
-        [ SvgAttr.points "-5,0 5,0 0,10"
+        [ SvgAttr.points "-15,0 15,0 0,20"
         , SvgAttr.fill "#D6DEEB"
-        , SvgAttr.stroke "#D6DEEB"
-        , SvgAttr.strokeWidth "1"
+        , SvgAttr.stroke "#7E57C25A"
+        , SvgAttr.strokeWidth "5"
         , SvgAttr.transform transformAttr
         ]
         []
@@ -400,7 +400,7 @@ viewContentOverlay model =
         , style "scroll-behavior"  "smooth"
         ]
         [ div
-            [ style "width"            "80%"
+            [ style "width"            "60%"
             , style "max-width"        "1200px"
             , style "margin"           "0 auto"
             , style "padding"          "100px 20px 40px"
@@ -412,7 +412,7 @@ viewContentOverlay model =
             [ viewSection "home" "Zander Chown" "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
             , viewSection "about" "About" "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
             , viewSection "projects" "Projects" "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-            , viewSection "contact" "Contact" "Interested in collaborating or have questions? Feel free to reach out. Email: example@domain.com"
+            , viewSection "contact" "Contact" "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
             ]
         ]
 
