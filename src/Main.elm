@@ -18,7 +18,7 @@ canvasHeight : Int
 canvasHeight = 2000
 
 numBoids : Int
-numBoids = 200
+numBoids = 250
 
 perceptionRadius : Float
 perceptionRadius = 25
