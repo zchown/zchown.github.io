@@ -332,7 +332,7 @@ viewNavItem targetId label =
         [ a
             [ href ("#" ++ targetId)
             , style "text-decoration" "none"
-            , style "color"           "#D6DEEB"
+            , style "color"           "#A6FFFF"
             , style "font-weight"     "bold"
             , style "font-size"       "1.1rem"
             ]
@@ -348,7 +348,7 @@ viewBoidsLayer model =
         , style "width"    "100%"
         , style "height"   "100%"
         , style "z-index"  "1"
-        , style "background-color" "#011627"
+        , style "background-color" "#001023"
         ]
         [ Svg.svg
             [ SvgAttr.width "100%"
@@ -405,9 +405,9 @@ viewContentOverlay model =
             , style "margin"           "0 auto"
             , style "padding"          "100px 20px 40px"
             , style "min-height"       "100vh"
-            , style "background-color" "rgba(29, 59, 83, 0.6)"
+            , style "background-color" "rgba(13, 42, 68, 0.6)"
             , style "backdrop-filter"  "blur(2px)"
-            , style "box-shadow"       "0 0 20px rgba(255, 255, 255, 0.7)"
+            , style "box-shadow"       "0 0 20px rgba(29, 59, 83, 0.2)"
             ]
             [ viewSection "home" "Zander Chown" "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
             , viewSection "about" "About" "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
@@ -422,7 +422,8 @@ viewSection sectionId title content =
         [ id sectionId
         , style "padding"          "20px"
         , style "margin-bottom"    "40px"
-        , style "background-color" "#1D3B53"
+        , style "background-color" "rgba(23, 60, 89, 0.7)"
+        , style "backdrop-filter"  "blur(3px)"
         , style "border-radius"    "8px"
         ]
         [ h2
