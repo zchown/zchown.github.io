@@ -23,7 +23,7 @@ numBoids : Int
 numBoids = 200
 
 perceptionRadius : Float
-perceptionRadius = 25
+perceptionRadius = 50
 
 separationWeight : Float
 separationWeight = 1.0
