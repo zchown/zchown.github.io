@@ -7358,10 +7358,10 @@ var $author$project$Main$viewBoid = function (boid) {
 		$elm$svg$Svg$polygon,
 		_List_fromArray(
 			[
-				$elm$svg$Svg$Attributes$points('-5,0 5,0 0,10'),
+				$elm$svg$Svg$Attributes$points('-15,0 15,0 0,20'),
 				$elm$svg$Svg$Attributes$fill('#D6DEEB'),
-				$elm$svg$Svg$Attributes$stroke('#D6DEEB'),
-				$elm$svg$Svg$Attributes$strokeWidth('1'),
+				$elm$svg$Svg$Attributes$stroke('#7E57C25A'),
+				$elm$svg$Svg$Attributes$strokeWidth('5'),
 				$elm$svg$Svg$Attributes$transform(transformAttr)
 			]),
 		_List_Nil);
@@ -7472,7 +7472,7 @@ var $author$project$Main$viewContentOverlay = function (model) {
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'width', '80%'),
+						A2($elm$html$Html$Attributes$style, 'width', '60%'),
 						A2($elm$html$Html$Attributes$style, 'max-width', '1200px'),
 						A2($elm$html$Html$Attributes$style, 'margin', '0 auto'),
 						A2($elm$html$Html$Attributes$style, 'padding', '100px 20px 40px'),
@@ -7486,7 +7486,7 @@ var $author$project$Main$viewContentOverlay = function (model) {
 						A3($author$project$Main$viewSection, 'home', 'Zander Chown', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.'),
 						A3($author$project$Main$viewSection, 'about', 'About', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.'),
 						A3($author$project$Main$viewSection, 'projects', 'Projects', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.'),
-						A3($author$project$Main$viewSection, 'contact', 'Contact', 'Interested in collaborating or have questions? Feel free to reach out. Email: example@domain.com')
+						A3($author$project$Main$viewSection, 'contact', 'Contact', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.')
 					]))
 			]));
 };
