@@ -7379,7 +7379,7 @@ var $author$project$Main$viewBoidsLayer = function (model) {
 				A2($elm$html$Html$Attributes$style, 'width', '100%'),
 				A2($elm$html$Html$Attributes$style, 'height', '100%'),
 				A2($elm$html$Html$Attributes$style, 'z-index', '1'),
-				A2($elm$html$Html$Attributes$style, 'background-color', '#011627')
+				A2($elm$html$Html$Attributes$style, 'background-color', '#001023')
 			]),
 		_List_fromArray(
 			[
@@ -7419,7 +7419,8 @@ var $author$project$Main$viewSection = F3(
 					$elm$html$Html$Attributes$id(sectionId),
 					A2($elm$html$Html$Attributes$style, 'padding', '20px'),
 					A2($elm$html$Html$Attributes$style, 'margin-bottom', '40px'),
-					A2($elm$html$Html$Attributes$style, 'background-color', '#1D3B53'),
+					A2($elm$html$Html$Attributes$style, 'background-color', 'rgba(23, 60, 89, 0.7)'),
+					A2($elm$html$Html$Attributes$style, 'backdrop-filter', 'blur(3px)'),
 					A2($elm$html$Html$Attributes$style, 'border-radius', '8px')
 				]),
 			_List_fromArray(
@@ -7477,9 +7478,9 @@ var $author$project$Main$viewContentOverlay = function (model) {
 						A2($elm$html$Html$Attributes$style, 'margin', '0 auto'),
 						A2($elm$html$Html$Attributes$style, 'padding', '100px 20px 40px'),
 						A2($elm$html$Html$Attributes$style, 'min-height', '100vh'),
-						A2($elm$html$Html$Attributes$style, 'background-color', 'rgba(29, 59, 83, 0.6)'),
+						A2($elm$html$Html$Attributes$style, 'background-color', 'rgba(13, 42, 68, 0.6)'),
 						A2($elm$html$Html$Attributes$style, 'backdrop-filter', 'blur(2px)'),
-						A2($elm$html$Html$Attributes$style, 'box-shadow', '0 0 20px rgba(255, 255, 255, 0.7)')
+						A2($elm$html$Html$Attributes$style, 'box-shadow', '0 0 20px rgba(29, 59, 83, 0.2)')
 					]),
 				_List_fromArray(
 					[
@@ -7516,7 +7517,7 @@ var $author$project$Main$viewNavItem = F2(
 						[
 							$elm$html$Html$Attributes$href('#' + targetId),
 							A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
-							A2($elm$html$Html$Attributes$style, 'color', '#D6DEEB'),
+							A2($elm$html$Html$Attributes$style, 'color', '#A6FFFF'),
 							A2($elm$html$Html$Attributes$style, 'font-weight', 'bold'),
 							A2($elm$html$Html$Attributes$style, 'font-size', '1.1rem')
 						]),
