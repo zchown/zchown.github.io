@@ -6441,7 +6441,7 @@ var $elm$random$Random$map3 = F4(
 				seed3);
 		};
 	});
-var $author$project$Main$numBoids = 200;
+var $author$project$Main$numBoids = 250;
 var $elm$core$Basics$abs = function (n) {
 	return (n < 0) ? (-n) : n;
 };
