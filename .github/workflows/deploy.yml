@@ -20,8 +20,13 @@ jobs:
       - name: Create docs directory if it doesn't exist
         run: mkdir -p docs
       - name: Build Elm to docs/
-        run: elm make src/Main.elm --optimize --output=docs/main.js
-      
+        run: |
+          elm make src/Main.elm --output=docs/main.js --optimize
+          # Check if build was successful
+          if [ ! -f docs/main.js ]; then
+            echo "Error: Elm build failed. main.js was not created."
+            exit 1
+          fi      
       - name: Create .nojekyll file
         run: touch docs/.nojekyll
       
