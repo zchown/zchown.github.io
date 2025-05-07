@@ -7247,7 +7247,7 @@ var $author$project$Main$limitVelocity = function (vel) {
 };
 var $author$project$Main$maxSteerForce = 3.0;
 var $elm$core$Basics$neq = _Utils_notEqual;
-var $author$project$Main$perceptionRadius = 25;
+var $author$project$Main$perceptionRadius = 50;
 var $author$project$Main$separationWeight = 1.0;
 var $elm_explorations$linear_algebra$Math$Vector2$getX = _MJS_v2getX;
 var $elm_explorations$linear_algebra$Math$Vector2$getY = _MJS_v2getY;
