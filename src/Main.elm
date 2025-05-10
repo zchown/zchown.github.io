@@ -379,7 +379,7 @@ viewBoid boid =
                 ++ ")"
     in
     Svg.polygon
-        [ SvgAttr.points "-15,0 15,0 0,20"
+        [ SvgAttr.points "0,-8 32,0 0,8"
         , SvgAttr.fill "#D6DEEB"
         , SvgAttr.stroke "#7E57C25A"
         , SvgAttr.strokeWidth "5"
