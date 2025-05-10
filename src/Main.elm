@@ -23,7 +23,7 @@ numBoids : Int
 numBoids = 200
 
 perceptionRadius : Float
-perceptionRadius = 50
+perceptionRadius = 30.0
 
 separationWeight : Float
 separationWeight = 1.0
@@ -41,7 +41,7 @@ minSpeed : Float
 minSpeed = 2.0
 
 maxSteerForce : Float
-maxSteerForce = 3.0
+maxSteerForce = 1.5
 
 -- MODEL
 
@@ -138,6 +138,27 @@ update msg model =
             , Cmd.none
             )
 
+perceptionCheck : Boid -> Boid -> Bool
+perceptionCheck boid other =
+    let
+        toOther = V2.sub other.position boid.position
+        dist = length toOther
+        inRadius = dist < perceptionRadius
+
+        boidDir = normalize boid.velocity
+        toOtherDir = normalize toOther
+
+        angle =
+            if length toOtherDir > 0 then
+                acos (V2.dot boidDir toOtherDir)
+            else
+                0
+
+        maxAngle = degrees 135
+    in
+    inRadius && angle <= maxAngle
+
+
 updateBoid : Model -> Boid -> Boid
 updateBoid model boid =
     let
@@ -145,7 +166,7 @@ updateBoid model boid =
             List.filter
                 (\other ->
                     other.id /= boid.id
-                        && distance other.position boid.position < perceptionRadius
+                        && perceptionCheck boid other
                 )
                 model.boids
 
@@ -248,9 +269,9 @@ limitForce force maxF =
         mag = length force
     in
     if mag > maxF && mag > 0 then
-        V2.scale (maxF / mag) force
+        V2.scale ((maxF / mag) * 1) force
     else
-        force
+        V2.scale 1.0 force
 
 limitVelocity : Vec2 -> Vec2
 limitVelocity vel =
