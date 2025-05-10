@@ -2719,7 +2719,7 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		p: func(record.p),
+		q: func(record.q),
 		S: record.S,
 		O: record.O
 	}
@@ -2989,7 +2989,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.p;
+		var message = !tag ? value : tag < 3 ? value.a : value.q;
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.S;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
@@ -6505,7 +6505,7 @@ var $author$project$Main$randomBoid = function (startId) {
 		$elm$random$Random$map3,
 		F3(
 			function (pos, vel, id) {
-				return {J: id, i: pos, s: vel};
+				return {J: id, i: pos, o: vel};
 			}),
 		$author$project$Main$randomPosition,
 		$author$project$Main$randomVelocity,
@@ -7176,7 +7176,7 @@ var $author$project$Main$calculateAlignment = function (neighbors) {
 				$elm$core$List$foldl,
 				F2(
 					function (b, acc) {
-						return A2($elm_explorations$linear_algebra$Math$Vector2$add, acc, b.s);
+						return A2($elm_explorations$linear_algebra$Math$Vector2$add, acc, b.o);
 					}),
 				A2($elm_explorations$linear_algebra$Math$Vector2$vec2, 0, 0),
 				neighbors));
@@ -7224,7 +7224,6 @@ var $author$project$Main$calculateSeparation = F2(
 		}
 	});
 var $author$project$Main$cohesionWeight = 1.0;
-var $elm_explorations$linear_algebra$Math$Vector2$distance = _MJS_v2distance;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -7239,15 +7238,32 @@ var $elm$core$List$filter = F2(
 var $author$project$Main$limitForce = F2(
 	function (force, maxF) {
 		var mag = $elm_explorations$linear_algebra$Math$Vector2$length(force);
-		return ((_Utils_cmp(mag, maxF) > 0) && (mag > 0)) ? A2($elm_explorations$linear_algebra$Math$Vector2$scale, maxF / mag, force) : force;
+		return ((_Utils_cmp(mag, maxF) > 0) && (mag > 0)) ? A2($elm_explorations$linear_algebra$Math$Vector2$scale, (maxF / mag) * 1, force) : A2($elm_explorations$linear_algebra$Math$Vector2$scale, 1.0, force);
 	});
 var $author$project$Main$limitVelocity = function (vel) {
 	var mag = $elm_explorations$linear_algebra$Math$Vector2$length(vel);
 	return ((_Utils_cmp(mag, $author$project$Main$maxSpeed) > 0) && (mag > 0)) ? A2($elm_explorations$linear_algebra$Math$Vector2$scale, $author$project$Main$maxSpeed / mag, vel) : (((_Utils_cmp(mag, $author$project$Main$minSpeed) < 0) && (mag > 0)) ? A2($elm_explorations$linear_algebra$Math$Vector2$scale, $author$project$Main$minSpeed / mag, vel) : ((!mag) ? A2($elm_explorations$linear_algebra$Math$Vector2$vec2, $author$project$Main$minSpeed / 2, $author$project$Main$minSpeed / 2) : vel));
 };
-var $author$project$Main$maxSteerForce = 3.0;
+var $author$project$Main$maxSteerForce = 1.5;
 var $elm$core$Basics$neq = _Utils_notEqual;
-var $author$project$Main$perceptionRadius = 50;
+var $elm$core$Basics$acos = _Basics_acos;
+var $elm$core$Basics$degrees = function (angleInDegrees) {
+	return (angleInDegrees * $elm$core$Basics$pi) / 180;
+};
+var $elm_explorations$linear_algebra$Math$Vector2$dot = _MJS_v2dot;
+var $author$project$Main$perceptionRadius = 30.0;
+var $author$project$Main$perceptionCheck = F2(
+	function (boid, other) {
+		var toOther = A2($elm_explorations$linear_algebra$Math$Vector2$sub, other.i, boid.i);
+		var toOtherDir = $elm_explorations$linear_algebra$Math$Vector2$normalize(toOther);
+		var maxAngle = $elm$core$Basics$degrees(135);
+		var dist = $elm_explorations$linear_algebra$Math$Vector2$length(toOther);
+		var inRadius = _Utils_cmp(dist, $author$project$Main$perceptionRadius) < 0;
+		var boidDir = $elm_explorations$linear_algebra$Math$Vector2$normalize(boid.o);
+		var angle = ($elm_explorations$linear_algebra$Math$Vector2$length(toOtherDir) > 0) ? $elm$core$Basics$acos(
+			A2($elm_explorations$linear_algebra$Math$Vector2$dot, boidDir, toOtherDir)) : 0;
+		return inRadius && (_Utils_cmp(angle, maxAngle) < 1);
+	});
 var $author$project$Main$separationWeight = 1.0;
 var $elm_explorations$linear_algebra$Math$Vector2$getX = _MJS_v2getX;
 var $elm_explorations$linear_algebra$Math$Vector2$getY = _MJS_v2getY;
@@ -7266,9 +7282,7 @@ var $author$project$Main$updateBoid = F2(
 		var neighbors = A2(
 			$elm$core$List$filter,
 			function (other) {
-				return (!_Utils_eq(other.J, boid.J)) && (_Utils_cmp(
-					A2($elm_explorations$linear_algebra$Math$Vector2$distance, other.i, boid.i),
-					$author$project$Main$perceptionRadius) < 0);
+				return (!_Utils_eq(other.J, boid.J)) && A2($author$project$Main$perceptionCheck, boid, other);
 			},
 			model.t);
 		var separation = A2($author$project$Main$calculateSeparation, neighbors, boid);
@@ -7283,14 +7297,14 @@ var $author$project$Main$updateBoid = F2(
 				A2($elm_explorations$linear_algebra$Math$Vector2$scale, $author$project$Main$cohesionWeight, cohesion)));
 		var limitedSteer = A2($author$project$Main$limitForce, steerForce, $author$project$Main$maxSteerForce);
 		var newVelocity = $author$project$Main$limitVelocity(
-			A2($elm_explorations$linear_algebra$Math$Vector2$add, limitedSteer, boid.s));
+			A2($elm_explorations$linear_algebra$Math$Vector2$add, limitedSteer, boid.o));
 		var newPosition = A2(
 			$author$project$Main$wrapEdges,
 			model,
 			A2($elm_explorations$linear_algebra$Math$Vector2$add, newVelocity, boid.i));
 		return _Utils_update(
 			boid,
-			{i: newPosition, s: newVelocity});
+			{i: newPosition, o: newVelocity});
 	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -7347,10 +7361,10 @@ var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
 var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
 var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
 var $author$project$Main$viewBoid = function (boid) {
-	var angle = ($elm_explorations$linear_algebra$Math$Vector2$length(boid.s) > 0) ? ((A2(
+	var angle = ($elm_explorations$linear_algebra$Math$Vector2$length(boid.o) > 0) ? ((A2(
 		$elm$core$Basics$atan2,
-		$elm_explorations$linear_algebra$Math$Vector2$getY(boid.s),
-		$elm_explorations$linear_algebra$Math$Vector2$getX(boid.s)) * 180) / $elm$core$Basics$pi) : 0;
+		$elm_explorations$linear_algebra$Math$Vector2$getY(boid.o),
+		$elm_explorations$linear_algebra$Math$Vector2$getX(boid.o)) * 180) / $elm$core$Basics$pi) : 0;
 	var transformAttr = 'translate(' + ($elm$core$String$fromFloat(
 		$elm_explorations$linear_algebra$Math$Vector2$getX(boid.i)) + (',' + ($elm$core$String$fromFloat(
 		$elm_explorations$linear_algebra$Math$Vector2$getY(boid.i)) + (') rotate(' + ($elm$core$String$fromFloat(angle) + ')')))));
