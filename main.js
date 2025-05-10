@@ -7358,7 +7358,7 @@ var $author$project$Main$viewBoid = function (boid) {
 		$elm$svg$Svg$polygon,
 		_List_fromArray(
 			[
-				$elm$svg$Svg$Attributes$points('-15,0 15,0 0,20'),
+				$elm$svg$Svg$Attributes$points('0,-8 32,0 0,8'),
 				$elm$svg$Svg$Attributes$fill('#D6DEEB'),
 				$elm$svg$Svg$Attributes$stroke('#7E57C25A'),
 				$elm$svg$Svg$Attributes$strokeWidth('5'),
