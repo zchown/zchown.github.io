@@ -1,0 +1,150 @@
+* { box-sizing: border-box; }
+
+html { font-size: 28px; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                 Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ---- Top nav ---- */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: rgba(29, 59, 83, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 15px 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.nav li { margin: 0 15px; }
+.nav a {
+    text-decoration: none;
+    color: #A6FFFF;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+/* ---- Boids background ---- */
+.boids-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background-color: #001023;
+}
+.boids-layer svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---- Scrollable content overlay ---- */
+.content-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Wider column; sections are the visual frame. */
+.content-container {
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 0 80px;
+    min-height: 100vh;
+}
+
+.content-container section {
+    padding: 32px 38px;
+    margin-bottom: 28px;
+    background-color: rgba(13, 42, 68, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 10px;
+    border: 1px solid rgba(130, 170, 255, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- Typography ---- */
+.content-container h1,
+.content-container h2 {
+    color: #82AAFF;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.2;
+}
+.content-container h1 { font-size: 2.6rem; }
+.content-container h2 { font-size: 1.8rem; }
+
+/* Sub-headings inside sections (## in markdown). */
+.content-container h3 {
+    color: #82AAFF;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 1.75rem 0 0.85rem 0;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.content-container p {
+    line-height: 1.7;
+    color: #D6DEEB;
+    margin: 0 0 1.25rem 0;
+}
+.content-container p:last-child { margin-bottom: 0; }
+
+.content-container a {
+    color: #A6FFFF;
+    text-decoration: underline;
+    text-decoration-color: rgba(166, 255, 255, 0.4);
+}
+.content-container a:hover {
+    text-decoration-color: #A6FFFF;
+}
+
+.content-container code {
+    font-family: 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    font-size: 0.9em;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    background-color: rgba(0, 16, 35, 0.5);
+    color: #82AAFF;
+}
+
+.content-container strong { color: #FFFFFF; }
+.content-container em { color: #C5E4FD; }
+
+.content-container ul {
+    line-height: 1.7;
+    color: #D6DEEB;
+    padding-left: 1.4em;
+    margin: 0 0 1.25rem 0;
+}
+.content-container li { margin-bottom: 0.55em; }
+.content-container li:last-child { margin-bottom: 0; }
+.content-container li::marker { color: #82AAFF; }
+.content-container ul:last-child { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+    .content-container section { padding: 24px 22px; }
+    .content-container h1 { font-size: 2rem; }
+    .content-container h2 { font-size: 1.5rem; }
+}
