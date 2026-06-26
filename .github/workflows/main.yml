@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions needed to publish to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one deploy at a time. Don't cancel in-progress runs; let them finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Zig
+        uses: mlugg/setup-zig@v1
+        with:
+          version: 0.14.0
+
+      - name: Build WASM
+        run: zig build
+
+      # Copy only what the live site actually needs into _site/.
+      # Source files, build scripts, and README stay out of the deploy.
+      - name: Stage site
+        run: |
+          mkdir -p _site
+          cp index.html style.css app.js boids.js content.js content.md _site/
+          cp -r zig-out _site/
+          if [ -f cv.pdf ]; then cp cv.pdf _site/; fi
+          if [ -d images ]; then cp -r images _site/; fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
